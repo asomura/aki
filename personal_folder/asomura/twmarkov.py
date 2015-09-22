@@ -12,10 +12,10 @@ while True:
     search_words = raw_input(u"words: ")
     log_dir = "./log/"
 
-    C_KEY = "DTMhrPcx4h4y3QavODgGmg"
-    C_SECRET = "erhwpC1hb8WVoNsWqW743uVxBI4HD9NV2Be4nt3wsU"
-    A_KEY = "5798702-aCujKPGilrLwPVIScBVrvoGz5xSAZVmFKS8lpN76rB"
-    A_SECRET = "JuMLZ2zS1p76G9Xcbutm8dh8L3q4dnY5YfAb9tKXs06WN"
+    C_KEY = ""
+    C_SECRET = ""
+    A_KEY = ""
+    A_SECRET = ""
 
     def Search_words():
         url = "https://api.twitter.com/1.1/search/tweets.json?"
