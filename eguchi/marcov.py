@@ -110,7 +110,7 @@ class MarcovModel:
         return selectedTuple
 
     #文頭フレーズ候補が複数ある場合の選択ロジック（学習時の登場回数が多いほうが選ばれ易くなる）
-    def ____selectPhrase(self, tpl1, tpl2):
+    def __selectPhrase(self, tpl1, tpl2):
         cnt1 = self.starts[tpl1]
         cnt2 = self.starts[tpl2]
         selectedTuple = tpl1
