@@ -1,5 +1,6 @@
 # coding: utf-8
 import Cabocha
+import re
 from xml.etree.ElementTree import *
 
 '''
@@ -26,12 +27,20 @@ TextParser
 class TextParser:
 
     #コンストラクタ
-    def __init__(self, text):
+    def __init__(self, text=""):
+        self.parse(text)
+
+    #メソッド
+    #テキストを読み込み、解析
+    def parse(self, text):
         self.text = text
-        self.xmlString = self.__cabochaParse()
+        self.xmlString = ""
         self.phraseList = []
         self.chunks = []
-        self.__getPhraseList()
+        self.linkCount = {}
+        if not text == "":
+            self.xmlString = self.__cabochaParse()
+            self.__getPhraseList()
 
     #プライベートメソッド
     #Cabochaによる解析
