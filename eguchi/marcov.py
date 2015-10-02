@@ -1,6 +1,6 @@
 # coding: utf-8
 import io
-import json
+import pickle
 import sys
 import os
 import random
@@ -51,25 +51,24 @@ class MarcovModel:
         return sentence
 
     #辞書ファイル(json)のセーブ
-    #現状エラーが出るので使用不可
-    def save(self, dicFile="dic.json", startsFile="starts.json"):
+    def save(self, dicFile="dic.dump", startsFile="starts.dump"):
         filePairs = [
             [dicFile, self.dic],
             [startsFile, self.starts]
         ]
         for (saveFile, data) in filePairs:
-            with io.open(saveFile, 'w', encoding='utf-8') as f:
-                f.write(unicode(json.dumps(data, ensure_ascii=False)))
+            f = open(saveFile, "w")
+            pickle.dump(data, f)
+            f.close()
 
     #辞書ファイル(json)のロード
-    def load(self, dicFile="dic.json", startsFile="starts.json"):
-        filePairs = [
-            [dicFile, self.dic],
-            [startsFile, self.starts]
-        ]
-        for (loadFile, data) in filePairs:
-            j = open(loadFile, 'r').read()
-            data = json.loads(j)
+    def load(self, dicFile="dic.dump", startsFile="starts.dump"):
+        f = open(dicFile, "r")
+        self.dic = pickle.load(f)
+        f.close()
+        f = open(startsFile, "r")
+        self.starts = pickle.load(f)
+        f.close()
 
     #プライベートメソッド
     #辞書ファイルへのデータ追加
